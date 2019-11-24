@@ -53,8 +53,8 @@ router.post('/add',(req,res)=>{
     console.log(accountnumber)
     console.log(req.body)
     const queryy = {
-                     text: 'INSERT INTO accounts(accountnumber, createdon, owner, type, status, balance, email) VALUES($1, $2, $3, $4, $5, $6, $7)',
-                     values: [accountnumber, datetime, req.body.firstname + ' ' + req.body.lastname, req.body.type, 'active', req.body.balance,req.body.email]
+                     text: 'INSERT INTO accounts(accountnumber, createdon, owner, type, status, balance, email, imgurl) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
+                     values: [accountnumber, datetime, req.body.firstname + ' ' + req.body.lastname, req.body.type, 'active', req.body.balance,req.body.email,req.body.imgUrl]
                     }
     pool.connect()
      .then(pool.query(queryy)
@@ -99,6 +99,24 @@ router.get('/:id', (req,res)=>{
     let id = req.params.id
     pool.connect()
         .then(pool.query(`select * from accounts where id = ${id.toString()}`)
+            .then(result=>{
+                res.status(200)
+                res.json({success:true, data:result.rows})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        )
+        .catch(err=>{
+            console.log(err)
+            .finally(pool.end())
+        })
+})
+
+router.post('/deleteaccount', (req,res)=>{
+    let id = req.body.id
+    pool.connect()
+        .then(pool.query(`delete from accounts where id = ${id.toString()}`)
             .then(result=>{
                 res.status(200)
                 res.json({success:true, data:result.rows})
