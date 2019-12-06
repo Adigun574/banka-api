@@ -11,12 +11,18 @@ const email = require('./routes/email')
 
 const { Pool, Client } = require('pg')
 
+//local pg connection
+// const client = new Client({
+//     user:"postgres",
+//     password:"00000000",
+//     host:"localhost",
+//     port:5432,
+//     database:"banka"
+// })
+
 const client = new Client({
-    user:"postgres",
-    password:"00000000",
-    host:"localhost",
-    port:5432,
-    database:"banka"
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
 })
 
 //email('adigunibrahim574@gmail.com', 'new password', '1001')
