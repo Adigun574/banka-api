@@ -21,7 +21,7 @@ const pool = new Pool({
 })
 
 
-app = express()
+const app = express()
 router.get("/",(req,res)=>{
     res.send("get users")
 })
@@ -29,7 +29,7 @@ router.get("/",(req,res)=>{
 router.post("/add",(req,res)=>{
     const queryy = {
                         text: 'INSERT INTO users(email, firstname, lastname, password, isadmin, imgurl) VALUES($1, $2, $3, $4, $5, $6)',
-                        values: [req.body.email, req.body.firstName, req.body.lastName, req.body.password, true, req.body.imgUrl]
+                        values: [req.body.email, req.body.firstName, req.body.lastName, req.body.password, req.body.isAdmin, req.body.imgUrl]
                     }
     pool.connect()
      .then(pool.query(queryy)

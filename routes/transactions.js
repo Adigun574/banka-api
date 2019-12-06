@@ -13,7 +13,7 @@ const pool = new Pool({
 })
 
 
-app = express()
+const app = express()
 
 
 
@@ -104,7 +104,7 @@ router.get('/viewtransaction/:id',(req,res)=>{
         .then(result=>{
             res.status(200)
             res.json({success:true,data:result.rows})
-            console.log(result.rows)
+            //console.log(result.rows)
         })
         .catch(
             err=>{

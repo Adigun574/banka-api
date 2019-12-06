@@ -17,7 +17,7 @@ const pool = new Pool({
     database:"banka"
 })
 
-app = express()
+const app = express()
 
 router.post('/add',(req,res)=>{
     let d = new Date()
@@ -102,6 +102,26 @@ router.get('/:id', (req,res)=>{
             .then(result=>{
                 res.status(200)
                 res.json({success:true, data:result.rows})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        )
+        .catch(err=>{
+            console.log(err)
+            .finally(pool.end())
+        })
+})
+
+router.post('/email', (req,res)=>{
+    let email = req.body.email
+    console.log(req.body)
+    pool.connect()
+        .then(pool.query(`select * from accounts where email = '${email}'`)
+            .then(result=>{
+                res.status(200)
+                res.json({success:true, data:result.rows})
+                console.log("list of accounts",result.rows)
             })
             .catch(err=>{
                 console.log(err)
