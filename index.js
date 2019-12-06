@@ -120,6 +120,8 @@ app.listen(port,()=>{
     console.log(`server started on port ${port}`)
 })
 
+//"nodemon --exec babel-node index.js"
+
 
 
 
