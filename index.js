@@ -123,7 +123,7 @@ app.listen(port,()=>{
 //"nodemon --exec babel-node index.js"
 //
 
-
+//C:\Users\Adigun\AppData\Roaming\npm;C:\Program Files\heroku\bin
 
 
 // const pool = new Pool({
