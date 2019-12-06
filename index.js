@@ -21,6 +21,7 @@ const client = new Client({
 
 //email('adigunibrahim574@gmail.com', 'new password', '1001')
 //console.log(stuffs)
+//
 
 
 // const transporter = nodemailer.createTransport(smtpTransport({
