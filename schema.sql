@@ -7,7 +7,7 @@ CREATE TABLE accounts(
     balance BIGINT,
     owner VARCHAR(255),
     email VARCHAR(255),
-    imgurl VARCHAR(255)
+    imgurl VARCHAR(255),
 
     PRIMARY KEY (id)
 )
