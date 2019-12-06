@@ -75,7 +75,7 @@ const client = new Client({
 
 
 
-execute()
+//execute()
 
 async function execute(){
     try {
@@ -95,13 +95,14 @@ async function execute(){
           await client.end()
           console.log("client disconnected (index.js)")
       }
-    // await client.connect()
+}
+
+// await client.connect()
     // console.log("connected succesfully")
     // const results = await client.query('select * from users')
     // console.log(results.rows)
     // await client.end()
     // console.log("client disconnected")
-}
 
 
 const app = express()
