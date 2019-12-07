@@ -76,18 +76,18 @@ router.post("/login",(req,res)=>{
                     if(result.rows[0].password==credentials.password){
                         res.status(200)
                         res.json({success:true,data:result.rows[0]})
-                        //pool.end()
+                        pool.end()
                     }
                     else{
                         res.status(400)
                         res.json({success:false})
-                        //pool.end()
+                        pool.end()
                     }
                 }
                 else{
                     res.status(404)
                     res.json({success:false,msg:"user not found"})
-                    //pool.end()
+                    pool.end()
                 }
             })
           .catch(err=>{
