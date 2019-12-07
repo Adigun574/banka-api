@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer')
-//const stuffs = require('./routes/stuffs')
 
 let receiver = 'adigunibrahim574@gmail.com'
 let subject = 'still testting'

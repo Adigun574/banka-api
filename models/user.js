@@ -39,22 +39,3 @@ module.exports.addstaff = (req,callback)=>{
         
 }
 
-
-
-//console.log(req.body)
-    // const queryy = {
-    //     text: 'INSERT INTO users(email, firstname, lastname, password, isadmin) VALUES($1, $2, $3, $4, $5)',
-    //     values: [req.body.email, req.body.firstName, req.body.lastName, req.body.password, true]
-    //   }
-    // client.query(queryy,callback())
-    //to test
-    //   client.query(queryy, (err1,res1)=>{
-    //       if(err1){
-    //           res.json({status:false})
-    //       }
-    //       else if (res1){
-    //           res.json({status:true})
-    //       }
-    //   })
-    //to test
-    //console.log(result)

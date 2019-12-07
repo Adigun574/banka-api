@@ -83,7 +83,6 @@ router.post('/add',(req,res)=>{
 )
 
 router.get('/', (req,res)=>{
-    //res.send('retrieve all accounts')
     pool.connect()
         .then(pool.query('select * from accounts')
             .then(result=>{
@@ -158,28 +157,3 @@ router.post('/deleteaccount', (req,res)=>{
 })
 
 module.exports=router
-
-// execute()
-
-//     async function execute(){
-//         try {
-//             await client.connect()
-//             console.log("connected succesfully (post account)")
-//             try {
-//                 const queryy = {
-//                         text: 'INSERT INTO accounts(accountnumber, createdon, owner, type, status, balance) VALUES($1, $2, $3, $4, $5, $6)',
-//                         values: [req.body.accountnumber, req.body.createdon, req.body.owner, req.body.type, req.body.status, req.body.balance]
-//                     }
-//                 const results = await client.query(queryy)
-//                 res.json({status:200,data:{success:true}})
-//             }
-//             catch(e){
-//                 res.json({status:404,success:false})
-//             }
-//         } catch(err) {
-//             res.status({status:404,success:false})
-//         }
-//         finally{
-//             await client.end()
-//         }
-//     }

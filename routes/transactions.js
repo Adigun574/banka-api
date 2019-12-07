@@ -1,15 +1,19 @@
 const express = require('express')
 const router = express.Router()
 const { Pool, Client } = require('pg')
-const nodemailer = require('nodemailer');
-//const sendmail = require('sendmail')();
+const nodemailer = require('nodemailer')
 const email = require('./email')
-const pool = new Pool({
-    user:"postgres",
-    password:"00000000",
-    host:"localhost",
-    port:5432,
-    database:"banka"
+// const pool = new Pool({
+//     user:"postgres",
+//     password:"00000000",
+//     host:"localhost",
+//     port:5432,
+//     database:"banka"
+// })
+
+const pool = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
 })
 
 
