@@ -51,9 +51,15 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     next();
+// });
+
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()   
 });
 
 
@@ -69,11 +75,8 @@ app.use('/accounts',accounts)
 app.use('/transactions',transactions)
 
 app.all('/', function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "*");
-    // res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS")
-    res.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token")
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next()
 });
 
