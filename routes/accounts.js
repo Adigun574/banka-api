@@ -9,12 +9,17 @@ const { Pool, Client } = require('pg')
 //     database:"banka"
 // })
 
-const pool = new Pool({
-    user:"postgres",
-    password:"00000000",
-    host:"localhost",
-    port:5432,
-    database:"banka"
+// const pool = new Pool({
+//     user:"postgres",
+//     password:"00000000",
+//     host:"localhost",
+//     port:5432,
+//     database:"banka"
+// })
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
 })
 
 const app = express()
@@ -78,7 +83,7 @@ router.post('/add',(req,res)=>{
 )
 
 router.get('/', (req,res)=>{
-    res.send('retrieve all accounts')
+    //res.send('retrieve all accounts')
     pool.connect()
         .then(pool.query('select * from accounts')
             .then(result=>{
