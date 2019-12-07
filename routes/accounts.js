@@ -17,7 +17,7 @@ const { Pool, Client } = require('pg')
 //     database:"banka"
 // })
 
-const pool = new Client({
+const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: true
 })
@@ -61,8 +61,9 @@ router.post('/add',(req,res)=>{
                      text: 'INSERT INTO accounts(accountnumber, createdon, owner, type, status, balance, email, imgurl) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
                      values: [accountnumber, datetime, req.body.firstname + ' ' + req.body.lastname, req.body.type, 'active', req.body.balance,req.body.email,req.body.imgUrl]
                     }
-    pool.connect()
-     .then(pool.query(queryy)
+    // pool.connect()
+    //  .then(
+    pool.query(queryy)
         .then(result=>{
             res.status(200)
             res.json({success:true,data:req.body})
@@ -72,19 +73,21 @@ router.post('/add',(req,res)=>{
             res.json({success:false})
             console.log("error1",error)
         
-        })) 
-     .catch(err=>{
-         res.status(400)
-         res.json({success:false})
-         console.log("error2",error)
-     .finally(pool.end())
-    })   
+        })
+    // ) 
+    //  .catch(err=>{
+    //      res.status(400)
+    //      res.json({success:false})
+    //      console.log("error2",error)
+    //  .finally(pool.end())
+    // })   
     }
 )
 
 router.get('/', (req,res)=>{
-    pool.connect()
-        .then(pool.query('select * from accounts')
+    // pool.connect()
+    //     .then(
+        pool.query('select * from accounts')
             .then(result=>{
                 console.log(result.rows)
                 res.status(200)
@@ -93,17 +96,18 @@ router.get('/', (req,res)=>{
             .catch(err=>{
                 console.log(err)
             })
-        )
-        .catch(err=>{
-            console.log(err)
-            .finally(pool.end())
-        })
+        // )
+        // .catch(err=>{
+        //     console.log(err)
+        //     .finally(pool.end())
+        // })
 })
 
 router.get('/:id', (req,res)=>{
     let id = req.params.id
-    pool.connect()
-        .then(pool.query(`select * from accounts where id = ${id.toString()}`)
+    // pool.connect()
+    //     .then(
+        pool.query(`select * from accounts where id = ${id.toString()}`)
             .then(result=>{
                 res.status(200)
                 res.json({success:true, data:result.rows})
@@ -111,18 +115,19 @@ router.get('/:id', (req,res)=>{
             .catch(err=>{
                 console.log(err)
             })
-        )
-        .catch(err=>{
-            console.log(err)
-            .finally(pool.end())
-        })
+        // )
+        // .catch(err=>{
+        //     console.log(err)
+        //     .finally(pool.end())
+        // })
 })
 
 router.post('/email', (req,res)=>{
     let email = req.body.email
-    console.log(req.body)
-    pool.connect()
-        .then(pool.query(`select * from accounts where email = '${email}'`)
+    //console.log(req.body)
+    // pool.connect()
+    //     .then(
+        pool.query(`select * from accounts where email = '${email}'`)
             .then(result=>{
                 res.status(200)
                 res.json({success:true, data:result.rows})
@@ -131,17 +136,18 @@ router.post('/email', (req,res)=>{
             .catch(err=>{
                 console.log(err)
             })
-        )
-        .catch(err=>{
-            console.log(err)
-            .finally(pool.end())
-        })
+        // )
+        // .catch(err=>{
+        //     console.log(err)
+        //     .finally(pool.end())
+        // })
 })
 
 router.post('/deleteaccount', (req,res)=>{
     let id = req.body.id
-    pool.connect()
-        .then(pool.query(`delete from accounts where id = ${id.toString()}`)
+    // pool.connect()
+    //     .then(
+        pool.query(`delete from accounts where id = ${id.toString()}`)
             .then(result=>{
                 res.status(200)
                 res.json({success:true, data:result.rows})
@@ -149,11 +155,11 @@ router.post('/deleteaccount', (req,res)=>{
             .catch(err=>{
                 console.log(err)
             })
-        )
-        .catch(err=>{
-            console.log(err)
-            .finally(pool.end())
-        })
+        // )
+        // .catch(err=>{
+        //     console.log(err)
+        //     .finally(pool.end())
+        // })
 })
 
 module.exports=router

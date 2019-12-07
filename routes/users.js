@@ -41,8 +41,9 @@ router.post("/add",(req,res)=>{
                         text: 'INSERT INTO users(email, firstname, lastname, password, isadmin, imgurl) VALUES($1, $2, $3, $4, $5, $6)',
                         values: [req.body.email, req.body.firstName, req.body.lastName, req.body.password, req.body.isAdmin, req.body.imgUrl]
                     }
-    pool.connect()
-     .then(pool.query(queryy)
+    // pool.connect()
+    //  .then(
+    pool.query(queryy)
         .then(result=>{
             res.status(200)
             res.json({success:true,data:req.body})
@@ -54,14 +55,15 @@ router.post("/add",(req,res)=>{
             res.json({success:false})
             console.log("prob1")
             pool.end()
-        }))
-     .catch(err=>{
-         console.log("this is error2:",err)
-         res.status(400)
-         res.json({success:false})
-         console.log("prob2")
-         pool.end()
         })
+    // )
+    //  .catch(err=>{
+    //      console.log("this is error2:",err)
+    //      res.status(400)
+    //      res.json({success:false})
+    //      console.log("prob2")
+    //      pool.end()
+    //     })
      
 })
 
@@ -71,7 +73,6 @@ router.post("/login",(req,res)=>{
         password:req.body.password,
         id:2,
     }
-    //res.send('authenticate user')
     // pool.connect()
     //  .then(()=> {
          pool.query('select * from users where email = $1', [credentials.email])
@@ -111,8 +112,8 @@ router.post("/login",(req,res)=>{
 router.post("/resetpassword",(req,res)=>{
     newpassword = parseInt(Math.random()*10000)
     console.log(newpassword)
-    pool.connect()
-    //checking if email is valid starts
+    //pool.connect()
+    //checking if email is valid STARTS
     pool.query('select * from users where email = $1', [req.body.email])
     .then((result)=>{
         console.log("f**king result:",result.rows)
@@ -140,7 +141,7 @@ router.post("/resetpassword",(req,res)=>{
     .catch(err=>{
         console.log(err)
           pool.end()})
-    //checking if email is valid ends
+    //checking if email is valid ENDS
      
 })
 
