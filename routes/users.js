@@ -66,6 +66,7 @@ router.post("/login",(req,res)=>{
         password:req.body.password,
         id:2,
     }
+    res.send('authenticate user')
     pool.connect()
      .then(()=> {
          pool.query('select * from users where email = $1', [credentials.email])
