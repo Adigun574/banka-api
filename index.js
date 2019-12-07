@@ -75,7 +75,7 @@ app.get("/",(req,res)=>{
 })
 
 
-app.use('/users',users)
+app.use('/users',cors(),users)
 
 app.use('/accounts',accounts)
 
