@@ -69,13 +69,15 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.options('*', cors())
+
 
 app.get("/",(req,res)=>{
     res.send('welcome to heaven y\'all bunch of mofos')
 })
 
 
-app.use('/users',cors(),users)
+app.use('/users',users)
 
 app.use('/accounts',accounts)
 
