@@ -89,7 +89,7 @@ router.post("/login",(req,res)=>{
                     res.json({success:false,msg:"user not found"})
                     //pool.end()
                 }
-                pool.end()
+                //pool.end()
             })
           .catch(err=>{
               console.log(err)
