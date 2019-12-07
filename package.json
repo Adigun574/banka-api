@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node index.js",
-    "devstart": "babel-node index.js"
+    "devstart": "nodemon --exec babel-node index.js"
   },
   "repository": {
     "type": "git",

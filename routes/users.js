@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require ('../models/user')
+const cors = require('cors')
 
 const { Pool, Client } = require('pg')
 
@@ -60,7 +61,7 @@ router.post("/add",(req,res)=>{
      
 })
 
-router.post("/login",(req,res)=>{
+router.post("/login",cors(),(req,res)=>{
     let credentials = {
         email:req.body.email,
         password:req.body.password,
