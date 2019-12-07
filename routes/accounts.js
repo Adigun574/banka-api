@@ -17,7 +17,7 @@ const { Pool, Client } = require('pg')
 //     database:"banka"
 // })
 
-const client = new Client({
+const pool = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
 })
