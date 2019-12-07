@@ -78,6 +78,7 @@ router.post('/add',(req,res)=>{
 )
 
 router.get('/', (req,res)=>{
+    res.send('retrieve all accounts')
     pool.connect()
         .then(pool.query('select * from accounts')
             .then(result=>{
