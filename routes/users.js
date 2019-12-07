@@ -72,8 +72,8 @@ router.post("/login",(req,res)=>{
         id:2,
     }
     //res.send('authenticate user')
-    pool.connect()
-     .then(()=> {
+    // pool.connect()
+    //  .then(()=> {
          pool.query('select * from users where email = $1', [credentials.email])
           .then((result)=>{
               console.log("f**king result:",result.rows)
@@ -100,11 +100,11 @@ router.post("/login",(req,res)=>{
               console.log(err)
                 pool.end()
             })
-        })
-     .catch((err)=>{
-         console.log(err)
-            pool.end()
-        })
+    //     })
+    //  .catch((err)=>{
+    //      console.log(err)
+    //         pool.end()
+    //     })
 
 })
 
