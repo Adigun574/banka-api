@@ -73,15 +73,18 @@ router.post("/login",(req,res)=>{
               console.log("f**king result:",result.rows)
                 if(result.rows.length!=0){
                     if(result.rows[0].password==credentials.password){
+                        res.header("Access-Control-Allow-Origin", "*")
                         res.status(200)
                         res.json({success:true,data:result.rows[0]})
                     }
                     else{
+                        res.header("Access-Control-Allow-Origin", "*");
                         res.status(400)
                         res.json({success:false})
                     }
                 }
                 else{
+                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(404)
                     res.json({success:false,msg:"user not found"})
                 }
