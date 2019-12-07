@@ -45,17 +45,12 @@ async function execute(){
 }
 
 const app = express()
+const port = process.env.PORT || 3000
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    //res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
-});
 
-const port = process.env.PORT || 3000
 
 app.get("/",(req,res)=>{
     res.send('welcome to heaven y\'all bunch of mofos')
@@ -67,6 +62,12 @@ app.use('/users',users)
 app.use('/accounts',accounts)
 
 app.use('/transactions',transactions)
+
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+});
 
 app.listen(port,()=>{
     console.log(`server started on port ${port}`)
