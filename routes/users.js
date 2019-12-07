@@ -25,6 +25,11 @@ const pool = new Pool({
     ssl: true
 })
 
+// const pool = new Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: true
+// })
+
 
 const app = express()
 router.get("/",(req,res)=>{
@@ -93,12 +98,12 @@ router.post("/login",(req,res)=>{
             })
           .catch(err=>{
               console.log(err)
-                //pool.end()
+                pool.end()
             })
         })
      .catch((err)=>{
          console.log(err)
-            //pool.end()
+            pool.end()
         })
 
 })
