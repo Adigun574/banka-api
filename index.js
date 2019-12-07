@@ -48,7 +48,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 var corsOptions = {
-    origin: '*',
+    origin: 'http://localhost:8080',
     optionsSuccessStatus: 200
   }
 
@@ -57,24 +57,24 @@ app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     next();
+// });
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()   
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next()   
+// });
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-app.options('*', cors())
+// app.options('*', cors())
 
 
 app.get("/",(req,res)=>{
@@ -88,11 +88,11 @@ app.use('/accounts',accounts)
 
 app.use('/transactions',transactions)
 
-app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
-});
+// app.all('/', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next()
+// });
 
 app.listen(port,()=>{
     console.log(`server started on port ${port}`)
